@@ -86,6 +86,24 @@ git add .
 git commit -m "feat: add dark mode toggle, interactive contact form, EmailJS support, animations"
 ```
 
+## Deploying
+
+There are multiple easy ways to deploy this static site.
+
+- GitHub Pages (recommended for simple hosting):
+
+   1. Push your repository to GitHub (branch `main` or `master`).
+   2. The included GitHub Actions workflow will build and deploy the `dist` folder to GitHub Pages automatically on push.
+
+- Vercel / Netlify (recommended for continuous deployment with previews):
+
+   - Connect the repository to Vercel or Netlify and set the build command to `npm run build` and the publish directory to `dist`.
+
+Environment variables for EmailJS (if used):
+
+Add a `.env` or set repository secrets on your host for `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_USER_ID`.
+
+
 
 ## License
 
