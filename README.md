@@ -99,6 +99,14 @@ There are multiple easy ways to deploy this static site.
 
    - Connect the repository to Vercel or Netlify and set the build command to `npm run build` and the publish directory to `dist`.
 
+Vercel configuration:
+
+- A `vercel.json` file is included to instruct Vercel to use `@vercel/static-build` and publish the `dist` directory. When you connect the repo in Vercel, confirm the Build Command is `npm run build` and the Output Directory is `dist`.
+
+Netlify configuration:
+
+- A `netlify.toml` file is included with the build command and SPA redirect rules. When you connect the repo in Netlify, the build command will be picked up automatically.
+
    Environment variables for EmailJS (if used):
 
    Add a `.env` or set repository secrets on your host for `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_USER_ID`.
