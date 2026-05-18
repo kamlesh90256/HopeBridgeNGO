@@ -64,6 +64,29 @@ HopeBridge NGO is a polished React + Tailwind CSS nonprofit landing page for the
 - The site is currently optimized as a frontend experience; the contact form does not submit to a backend yet.
 - Image cards use external photo sources with local SVG fallbacks so the layout remains stable even when remote assets are blocked.
 
+## Optional: EmailJS contact setup
+
+- The contact form supports EmailJS for real email delivery. To enable it, create an account at https://www.emailjs.com and create a service and template.
+- Add the following environment variables to a `.env` file at the project root (Vite loads variables prefixed with `VITE_`):
+
+```
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_USER_ID=your_user_id
+```
+
+- If these variables are present the app will attempt to send via the EmailJS REST API; otherwise it falls back to opening the user's email client with a `mailto:` link.
+
+## Committing changes
+
+To commit the changes locally:
+
+```bash
+git add .
+git commit -m "feat: add dark mode toggle, interactive contact form, EmailJS support, animations"
+```
+
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.

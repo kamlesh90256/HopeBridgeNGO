@@ -1,10 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { FiSun, FiMoon } from 'react-icons/fi';
 import { navigationLinks } from '../data/content';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        setDark(saved === 'dark');
+        document.documentElement.classList.toggle('dark', saved === 'dark');
+      } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setDark(prefersDark);
+        document.documentElement.classList.toggle('dark', prefersDark);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  function toggleTheme() {
+    const next = !dark;
+    setDark(next);
+    try {
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+    } catch (e) {}
+    document.documentElement.classList.toggle('dark', next);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
@@ -31,12 +58,23 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a
-          href="#donation"
-          className="hidden rounded-full bg-primary-500 px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-95 lg:inline-flex"
-        >
-          Donate Now
-        </a>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            aria-pressed={dark}
+            title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/5 bg-white/2 text-white transition hover:border-sky-400/30 lg:mr-2 focus-visible:ring-2 focus-visible:ring-sky-400/40"
+          >
+            {dark ? <FiSun className="text-lg" /> : <FiMoon className="text-lg" />}
+          </button>
+
+          <a
+            href="#donation"
+            className="hidden rounded-full bg-primary-500 px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-95 lg:inline-flex"
+          >
+            Donate Now
+          </a>
+        </div>
 
         <button
           type="button"
