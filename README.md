@@ -99,9 +99,13 @@ There are multiple easy ways to deploy this static site.
 
    - Connect the repository to Vercel or Netlify and set the build command to `npm run build` and the publish directory to `dist`.
 
-Environment variables for EmailJS (if used):
+   Environment variables for EmailJS (if used):
 
-Add a `.env` or set repository secrets on your host for `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_USER_ID`.
+   Add a `.env` or set repository secrets on your host for `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_USER_ID`.
+
+   CI:
+
+   - A lightweight CI workflow is included to run `npm ci` and `npm run build` for pushes and pull requests. See `.github/workflows/ci.yml`.
 
 
 
