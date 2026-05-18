@@ -1,0 +1,12 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7F1D1D"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="70" y="70" width="660" height="360" rx="28" fill="#450A0A" fill-opacity="0.55" stroke="#FCA5A5" stroke-opacity="0.35"/>
+  <text x="100" y="200" fill="#FEE2E2" font-family="Segoe UI, Arial" font-size="58" font-weight="700">Project Seva</text>
+  <text x="100" y="265" fill="#FECACA" font-family="Segoe UI, Arial" font-size="34">50,000+ Meals Distributed</text>
+</svg>

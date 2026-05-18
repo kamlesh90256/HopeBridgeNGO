@@ -1,0 +1,12 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C2D12"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="70" y="70" width="660" height="360" rx="28" fill="#431407" fill-opacity="0.6" stroke="#FDBA74" stroke-opacity="0.35"/>
+  <text x="100" y="200" fill="#FFEDD5" font-family="Segoe UI, Arial" font-size="52" font-weight="700">Project Bachpanshala</text>
+  <text x="100" y="265" fill="#FED7AA" font-family="Segoe UI, Arial" font-size="34">Educating Children in Rural Areas</text>
+</svg>

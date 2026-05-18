@@ -1,0 +1,14 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14532D"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <circle cx="160" cy="120" r="70" fill="#22C55E" fill-opacity="0.35"/>
+  <circle cx="650" cy="380" r="95" fill="#4ADE80" fill-opacity="0.2"/>
+  <rect x="70" y="70" width="660" height="360" rx="28" fill="#022C22" fill-opacity="0.65" stroke="#86EFAC" stroke-opacity="0.35"/>
+  <text x="100" y="200" fill="#DCFCE7" font-family="Segoe UI, Arial" font-size="58" font-weight="700">Project Prakriti</text>
+  <text x="100" y="265" fill="#BBF7D0" font-family="Segoe UI, Arial" font-size="34">20,000+ Trees Planted</text>
+</svg>
