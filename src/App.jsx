@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
-import CoursesSection from './components/CoursesSection';
+import CampaignsSection from './components/CampaignsSection';
 import ImpactSection from './components/ImpactSection';
-import FeaturesSection from './components/FeaturesSection';
-import StatisticsSection from './components/StatisticsSection';
-import TestimonialsSection from './components/TestimonialsSection';
 import DonationSection from './components/DonationSection';
+import VolunteerSection from './components/VolunteerSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import GallerySection from './components/GallerySection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
@@ -32,22 +32,20 @@ export default function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative min-h-screen overflow-hidden bg-slate-950 text-white"
+      className="page-shell min-h-screen"
     >
-      {/* Decorative background layers create the calm nonprofit atmosphere. */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.06),_transparent_22%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] opacity-20" />
+      <div className="page-glow" />
 
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <CoursesSection />
+        <CampaignsSection />
         <ImpactSection />
-        <FeaturesSection />
-        <StatisticsSection />
-        <TestimonialsSection />
         <DonationSection />
+        <VolunteerSection />
+        <TestimonialsSection />
+        <GallerySection />
         <ContactSection />
       </main>
       <Footer />

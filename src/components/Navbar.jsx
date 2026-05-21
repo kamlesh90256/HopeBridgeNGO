@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
 import { navigationLinks } from '../data/content';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     try {
@@ -22,6 +22,15 @@ export default function Navbar() {
     } catch (e) {
       // ignore
     }
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   function toggleTheme() {
@@ -34,15 +43,19 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <header
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        scrolled ? 'border-[var(--border)] bg-[color:var(--surface-strong)] shadow-[0_10px_30px_rgba(15,23,42,0.06)] backdrop-blur-2xl' : 'border-transparent bg-transparent'
+      }`}
+    >
+      <div className="container-shell flex items-center justify-between py-4">
         <a href="#home" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-sky-400/30 bg-sky-500/10 text-lg font-bold text-sky-300 shadow-glow">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-sky-400/25 bg-gradient-to-br from-sky-500/15 to-emerald-500/15 text-lg font-black text-sky-700 shadow-[0_10px_30px_rgba(59,130,246,0.14)] dark:text-sky-200">
             I
           </span>
           <div>
-            <p className="text-base font-semibold tracking-wide text-white">InAmigos Foundation</p>
-            <p className="text-xs text-slate-400">Uniting minds for change</p>
+            <p className="text-base font-semibold tracking-tight text-[var(--text)] sm:text-lg">InAmigos Foundation</p>
+            <p className="text-xs text-[var(--muted)]">Uniting minds for change</p>
           </div>
         </a>
 
@@ -51,7 +64,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-slate-300 transition hover:text-white"
+              className="text-sm font-medium text-[var(--muted)] transition hover:text-[var(--text)]"
             >
               {link.label}
             </a>
@@ -63,14 +76,14 @@ export default function Navbar() {
             onClick={toggleTheme}
             aria-pressed={dark}
             title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/5 bg-white/2 text-white transition hover:border-sky-400/30 lg:mr-2 focus-visible:ring-2 focus-visible:ring-sky-400/40"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[color:var(--surface)] text-[var(--text)] transition hover:border-sky-400/30 hover:bg-sky-500/10 lg:mr-2"
           >
             {dark ? <FiSun className="text-lg" /> : <FiMoon className="text-lg" />}
           </button>
 
           <a
             href="#donation"
-            className="hidden rounded-full bg-primary-500 px-5 py-2.5 text-sm font-medium text-white transition hover:brightness-95 lg:inline-flex"
+            className="btn-primary hidden lg:inline-flex"
           >
             Donate Now
           </a>
@@ -79,7 +92,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white transition hover:border-sky-400/30 hover:bg-sky-500/10 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--border)] bg-[color:var(--surface)] text-[var(--text)] transition hover:border-sky-400/30 hover:bg-sky-500/10 lg:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
         >
@@ -94,15 +107,15 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur-xl lg:hidden"
+            className="border-t border-[var(--border)] bg-[color:var(--surface-strong)] px-4 py-4 backdrop-blur-2xl lg:hidden"
           >
-            <div className="mx-auto flex max-w-7xl flex-col gap-2 sm:px-2">
+            <div className="container-shell flex flex-col gap-2 sm:px-2">
               {navigationLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-white/5 hover:text-white"
+                  className="rounded-2xl px-4 py-3 text-sm font-medium text-[var(--muted)] transition hover:bg-sky-500/10 hover:text-[var(--text)]"
                 >
                   {link.label}
                 </a>
@@ -110,7 +123,7 @@ export default function Navbar() {
               <a
                 href="#donation"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 rounded-2xl border border-sky-400/30 bg-sky-500/10 px-4 py-3 text-center text-sm font-semibold text-sky-200"
+                className="btn-primary mt-2"
               >
                 Donate Now
               </a>

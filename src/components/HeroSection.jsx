@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaPlayCircle } from 'react-icons/fa';
+import AnimatedCounter from './AnimatedCounter';
+import { heroStats } from '../data/content';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -8,8 +10,8 @@ const fadeUp = {
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative pt-14 sm:pt-20">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-28">
+    <section id="home" className="section-shell pt-8 sm:pt-10">
+      <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
         <motion.div
           variants={{
             hidden: { opacity: 0 },
@@ -22,26 +24,29 @@ export default function HeroSection() {
           <motion.div
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-white/5 px-4 py-2 text-xs font-medium text-emerald-200 backdrop-blur-xl"
+            className="section-label mb-6"
           >
-            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.9)]" />
+            <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_18px_rgba(34,197,94,0.9)]" />
             Empowering communities through action and care
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
+            className="max-w-3xl text-4xl font-black tracking-tight text-[var(--text)] sm:text-5xl lg:text-7xl"
           >
-            Building Hope with <span className="bg-gradient-to-r from-emerald-300 via-white to-sky-300 bg-clip-text text-transparent">Purpose</span>
+            Building hope with{' '}
+            <span className="bg-gradient-to-r from-sky-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent dark:from-sky-300 dark:via-white dark:to-emerald-300">
+              purpose
+            </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
+            className="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg"
           >
-            InAmigos Foundation supports communities through food drives, social work, charity campaigns, cleanliness initiatives, and transparent grassroots action.
+            InAmigos Foundation supports communities through food drives, education support, animal welfare, plantation drives, and transparent grassroots action.
           </motion.p>
 
           <motion.div
@@ -51,35 +56,47 @@ export default function HeroSection() {
           >
             <a
               href="#donation"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:scale-[1.02] hover:shadow-blue-500/30"
+              className="btn-primary"
             >
               Donate Now
               <FaArrowRight />
             </a>
             <a
-              href="#programs"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-xl transition hover:border-sky-400/30 hover:bg-sky-500/10"
+              href="#volunteer"
+              className="btn-secondary"
             >
               <FaPlayCircle />
-              Explore Programs
+              Become Volunteer
+            </a>
+            <a href="#campaigns" className="btn-secondary">
+              Join Campaign
             </a>
           </motion.div>
 
           <motion.div
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="mt-10 grid max-w-xl grid-cols-3 gap-3 text-center sm:gap-4"
+            className="mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4"
           >
-            {[
-              ['Local', 'Action'],
-              ['Impact', 'First'],
-              ['Volunteer', 'Powered'],
-            ].map(([title, subtitle]) => (
-              <div key={title} className="rounded-3xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl">
-                <p className="text-lg font-semibold text-white sm:text-xl">{title}</p>
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-400">{subtitle}</p>
-              </div>
-            ))}
+            {heroStats.map((stat) => {
+              const Icon = stat.icon;
+
+              return (
+                <div key={stat.label} className="glass-card px-4 py-4 text-left">
+                  <div className="flex items-center gap-3 text-sky-600 dark:text-sky-200">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-500/10">
+                      <Icon />
+                    </span>
+                    <div>
+                      <p className="text-2xl font-black leading-none text-[var(--text)] sm:text-3xl">
+                        <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                      </p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.22em] text-[var(--muted)]">{stat.label}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </motion.div>
         </motion.div>
 
@@ -89,40 +106,56 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-              {/* Placeholder illustration card: replace with branded artwork if available later. */}
-          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-sky-500/20 via-transparent to-white/10 blur-3xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-2xl shadow-blue-950/40 backdrop-blur-2xl sm:p-6">
-            <div className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.95),rgba(15,23,42,0.65))] p-6 sm:p-8">
-              <div className="flex items-center justify-between text-xs text-slate-400">
-                <span>Community Impact Hub</span>
-                <span>Live Outreach</span>
+          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-tr from-sky-400/20 via-emerald-400/10 to-transparent blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2.25rem] border border-[var(--border)] bg-[color:var(--surface)] p-4 shadow-[0_30px_80px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-6">
+            <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-gradient-to-br from-sky-500/16 via-white/50 to-emerald-500/12 p-5 dark:from-sky-500/12 dark:via-slate-950/50 dark:to-emerald-500/8 sm:p-7">
+              <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.24em] text-[var(--muted)]">
+                <span>Community impact board</span>
+                <span>Live outreach</span>
               </div>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-[1.1fr_0.9fr]">
-                <div className="rounded-[1.5rem] border border-sky-400/20 bg-sky-500/10 p-5">
-                  <p className="text-sm font-medium text-emerald-200">Neighborhood Support Network</p>
-                  <p className="mt-3 text-2xl font-semibold text-white">Coordination, relief, and measurable impact for every project.</p>
-                  <div className="mt-6 h-2 rounded-full bg-white/10">
-                    <div className="h-2 w-[74%] rounded-full bg-gradient-to-r from-sky-400 to-blue-500 shadow-[0_0_20px_rgba(56,189,248,0.65)]" />
+              <div className="mt-8 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+                <div className="rounded-[1.75rem] border border-sky-400/20 bg-gradient-to-br from-sky-500/15 to-emerald-500/10 p-5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold text-sky-700 dark:text-sky-100">Neighborhood support network</p>
+                    <span className="rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-100">
+                      2026
+                    </span>
                   </div>
-                    <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Impact reach</p>
+                  <p className="mt-4 text-2xl font-bold leading-tight text-[var(--text)] sm:text-3xl">
+                    Coordination, relief, and measurable impact for every campaign.
+                  </p>
+                  <div className="mt-6 rounded-2xl bg-white/65 p-3 dark:bg-slate-950/40">
+                    <div className="flex items-center justify-between text-sm text-[var(--muted)]">
+                      <span>Campaign completion</span>
+                      <span>74%</span>
+                    </div>
+                    <div className="progress-track mt-3">
+                      <div className="progress-fill w-[74%]" />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="grid gap-4">
-                  <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Programs</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Education, health, relief</p>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-[0.28em] text-slate-400">Outcome</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Stronger communities</p>
-                  </div>
+                  {[
+                    ['Food security', 'Meals, ration kits, outreach'],
+                    ['Learning support', 'Girls, children, volunteers'],
+                    ['Animal care', 'Daily feeding and rescue help'],
+                  ].map(([title, text]) => (
+                    <div key={title} className="glass-card p-4">
+                      <p className="text-sm font-semibold text-[var(--text)]">{title}</p>
+                      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {['Donate', 'Volunteer', 'Partner'].map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-center text-sm font-medium text-slate-200">
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-[var(--border)] bg-[color:var(--surface-strong)] px-4 py-4 text-center text-sm font-semibold text-[var(--text)]"
+                  >
                     {item}
                   </div>
                 ))}
